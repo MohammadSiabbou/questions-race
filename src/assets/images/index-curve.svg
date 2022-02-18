@@ -1,0 +1,16 @@
+<svg
+    id="visual"
+    viewBox="0 0 900 450"
+    width="900"
+    height="450"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    version="1.1"
+>
+    <g transform="translate(0, 450)" id="bottom-curve">
+        <path
+            d="M0 -337.5C60.3 -329.4 120.6 -321.3 168.7 -292.3C216.9 -263.2 252.8 -213.2 278.9 -161C305 -108.8 321.2 -54.4 337.5 0L0 0Z"
+            fill="#F2BF00"
+        ></path>
+    </g>
+</svg>
