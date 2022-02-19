@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Hiding the Arrows from Input Number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/*  circular-progress color  */
+.mdc-circular-progress__determinate-circle,
+.mdc-circular-progress__indeterminate-circle-graphic {
+    stroke: #f2bf00 !important;
+    stroke: #f2bf00 !important;
+}
