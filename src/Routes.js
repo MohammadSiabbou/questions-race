@@ -1,8 +1,9 @@
-import {BrowserRouter,Routes , useLocation ,Route} from "react-router-dom";
+import {Routes , useLocation ,Route} from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 // pages 
 import Index from './pages/index'
-import CreatAGame from './pages/Game/Creat'
+import CreatAGame from './pages/Game/Create'
+import GameLobby from './pages/Game/Lobby'
 
 const Urls = () => {
     const location = useLocation();
@@ -11,7 +12,7 @@ const Urls = () => {
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Index />}></Route>
             <Route path="/Game" element={<CreatAGame />}></Route>
-            <Route path="/Game/:gid" element={<h3>HH</h3>}></Route>
+            <Route path="/Game/:gid" element={<GameLobby />}></Route>
           </Routes>
         </AnimatePresence>)
 };

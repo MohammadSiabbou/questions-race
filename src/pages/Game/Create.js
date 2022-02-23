@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useState, useEffect, Fragment } from 'react';
+import { useState, Fragment } from 'react';
 import { firebaseapp } from '../../FirebaseSetup';
 import { getFirestore } from "firebase/firestore"
 import { collection, addDoc } from "firebase/firestore";
@@ -21,10 +21,16 @@ const CreatAGame = () => {
             setLoading(true);
             console.log();
             const docRef = await addDoc(collection(db, "/games"), {
-                by: getAuth().currentUser.uid,
-                created_at: Math.floor(new Date().getTime() / 1000),
+                host: getAuth().currentUser.uid,
+                created_at: new Date().getTime(),
                 max_players: Values.max_players,
-                time: Values.time
+                time: Values.time,
+                status: "pending",
+                joinedusers: [{
+                    uid: getAuth().currentUser.uid,
+                    joinedat: new Date().getTime(),
+                    isHost : true
+                }]
             });
             console.log("Document written with ID: ", docRef.id);
             navigate('/Game/' + docRef.id);
@@ -49,11 +55,11 @@ const CreatAGame = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
                         <div>
                             <label className="text-white float-left mb-1">Time :</label>
-                            <input id="time" className="bg-transparent p-4 w-full text-white outline-none border-2 border-white rounded-md" type="text" value="1:00" placeholder="time (mm:ss)" />
+                            <input id="time" onChange={handleChange} className="bg-transparent p-4 w-full text-white outline-none border-2 border-white rounded-md" type="text" value={Values.time} placeholder="time (mm:ss)" />
                         </div>
                         <div>
                             <label className="text-white float-left mb-1">Max Players :</label>
-                            <input id="max_players" className="bg-transparent p-4 w-full text-white outline-none border-2 border-white rounded-md" type="number" max={10} value="4" placeholder="Players" />
+                            <input id="max_players" onChange={handleChange} className="bg-transparent p-4 w-full text-white outline-none border-2 border-white rounded-md" type="number" max={10} value={Values.max_players} placeholder="Players" />
                         </div>
                     </div>
                     <motion.button whileTap={{ scale: 0.9 }} initial={{ scale: 0 }} animate={{ scale: 1 }} className="bg-primary hover:bg-secondary-700 text-white font-bold py-2 px-4 rounded-full mt-5 cursor-pointer w-1/4" onClick={CreatTheGame} >Play !</motion.button>
